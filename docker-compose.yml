@@ -1,0 +1,42 @@
+version: '3.3'
+
+services:
+  bright_market_backend:
+    build: .
+    command: yarn start:dev
+    container_name: 'backend'
+    networks:
+      - webnet
+    environment:
+      PORT: ${PORT}
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_NAME: ${DB_NAME}
+    deploy:
+      restart_policy:
+        condition: on-failure
+    ports:
+      - '3000:${PORT}'
+    links:
+      - bright_market_database
+    depends_on:
+      - bright_market_database
+  bright_market_database:
+    image: postgres:latest
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    container_name: 'bright_market_database'
+    networks:
+      - webnet
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_DATABASE: ${DB_NAME}
+
+volumes:
+  postgres:
+networks:
+  webnet:
