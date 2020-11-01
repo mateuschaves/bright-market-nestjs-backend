@@ -1,4 +1,7 @@
 import { Module } from '@nestjs/common';
+import { SigninController } from './signin.controller';
 
-@Module({})
+@Module({
+  controllers: [SigninController]
+})
 export class SigninModule {}
