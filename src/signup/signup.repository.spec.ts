@@ -2,7 +2,6 @@ import { Test } from "@nestjs/testing";
 import { SignUpRepository } from './signup.repository';
 import { ConflictException, InternalServerErrorException } from "@nestjs/common";
 import { User } from "../common/User.entity";
-import * as bcrypt from 'bcrypt';
 import { SignUpDto } from "./dto/signup.dto";
 
 const mockUser: SignUpDto = {  
@@ -43,7 +42,7 @@ describe('SignUpRepository', () => {
             expect(signupRepository.signUp(mockUser)).rejects.toThrow(ConflictException);
         });
 
-        it('throws a internal server error exception on ungandled errors', () => {
+        it('throws a internal server error exception on unhandled errors', () => {
             save.mockRejectedValue({ code: '32505' });
             expect(signupRepository.signUp(mockUser)).rejects.toThrow(InternalServerErrorException);
         });
@@ -71,7 +70,7 @@ describe('SignUpRepository', () => {
             expect(result).toEqual(mockUser.email);
         });
 
-        it('returs null as user cannot be found', async () => {
+        it('returns null as user cannot be found', async () => {
             signupRepository.findOne.mockResolvedValue(null);
             const result = await signupRepository.validateUserPassword(mockUser);
             expect(user.validatePassword).not.toHaveBeenCalled();

@@ -1,10 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
-import * as request from 'supertest';
 import { SigninModule } from '../src/signin/signin.module';
 import { SignUpDto } from '../src/signup/dto/signup.dto';
 import { SignupService } from '../src/signup/signup.service';
 import { AppModule } from '../src/app.module';
+import * as request from 'supertest';
 
 const mockUser: SignUpDto = {
     "name": "Alo",
