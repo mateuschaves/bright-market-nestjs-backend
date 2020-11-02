@@ -49,10 +49,10 @@ export class ProductRepository extends Repository<Product> {
         }
     }
 
-    async viewProduct(id: number): Promise<Product> {
+    async viewProduct(barcode: string): Promise<Product> {
         const product = await this.findOne({
             where: {
-                id
+                barcode
             }
         });
 

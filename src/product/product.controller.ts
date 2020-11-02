@@ -1,5 +1,4 @@
 import { Body, Controller, Get, Param, Post, Query, UsePipes, ValidationPipe } from '@nestjs/common';
-import { URLSearchParams } from 'url';
 import { CreateProductDto } from './dto/create-product.dto';
 import { ListProductDto } from './dto/list-product.dto';
 import { ProductService } from './product.service';
@@ -24,11 +23,11 @@ export class ProductController {
         return this.productService.listProduct(listProductDto);
     }
 
-    @Get(':id')
+    @Get(':barcode')
     async viewProduct(
-        @Param('id') id: number
+        @Param('barcode') barcode: string
     ) {
-        return this.productService.viewProduct(id);
+        return this.productService.viewProduct(barcode);
     }
 
 }

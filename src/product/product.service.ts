@@ -18,7 +18,7 @@ export class ProductService {
         return this.productRepository.listProduct(listProductDto);
     }
 
-    async viewProduct(id: number) {
-        return this.productRepository.viewProduct(id);
+    async viewProduct(barcode: string) {
+        return this.productRepository.viewProduct(barcode);
     }
 }
