@@ -6,7 +6,7 @@ const dbConfig: any = config.get('db');
 
 export const typeOrmConfig: TypeOrmModuleOptions = {
     type: dbConfig.type,
-    host: 'bright_market_database',
+    host: 'localhost',
     port: process.env.RDS_PORT || dbConfig.port,
     username: process.env.RDS_USERNAME || dbConfig.username,
     password: process.env.RDS_PASSWORD || dbConfig.password,

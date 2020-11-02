@@ -5,11 +5,9 @@ services:
     container_name: bright_market_backend
     build:
       context: .
-      target: development
     command: npm run start:dev
     volumes:
       - .:/usr/src/app
-      - /usr/src/app/node_modules
     networks:
       - webnet
     environment:
