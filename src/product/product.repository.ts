@@ -52,7 +52,7 @@ export class ProductRepository extends Repository<Product> {
     async viewProduct(barcode: string): Promise<Product> {
         const product = await this.findOne({
             where: {
-                barcode
+                bar_code: barcode
             }
         });
 
