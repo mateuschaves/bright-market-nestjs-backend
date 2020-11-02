@@ -17,4 +17,8 @@ export class ProductService {
     async listProduct(listProductDto: ListProductDto) {
         return this.productRepository.listProduct(listProductDto);
     }
+
+    async viewProduct(id: number) {
+        return this.productRepository.viewProduct(id);
+    }
 }

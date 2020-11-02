@@ -1,4 +1,4 @@
-import { InternalServerErrorException } from "@nestjs/common";
+import { InternalServerErrorException, NotFoundException } from "@nestjs/common";
 import { EntityRepository, Repository } from "typeorm";
 import { CreateProductDto } from "./dto/create-product.dto";
 import { ListProductDto } from "./dto/list-product.dto";
@@ -47,5 +47,18 @@ export class ProductRepository extends Repository<Product> {
             page: Number(page),
             count: rows.length,
         }
+    }
+
+    async viewProduct(id: number): Promise<Product> {
+        const product = await this.findOne({
+            where: {
+                id
+            }
+        });
+
+        if(product)
+            return product;
+        else
+            throw new NotFoundException('Produto não encontrado');
     }
 }

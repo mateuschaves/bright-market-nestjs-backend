@@ -24,4 +24,11 @@ export class ProductController {
         return this.productService.listProduct(listProductDto);
     }
 
+    @Get(':id')
+    async viewProduct(
+        @Param('id') id: number
+    ) {
+        return this.productService.viewProduct(id);
+    }
+
 }
