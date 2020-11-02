@@ -16,7 +16,7 @@ const jwtConfig: any = config.get('jwt');
     JwtModule.register({
       secret: process.env.JWT_SECRET || jwtConfig.secret,
       signOptions: {
-        expiresIn: jwtConfig.expiresIn,
+        expiresIn: process.env.JWT_EXPIRES,
       }
     }),
     TypeOrmModule.forFeature([SignInRepository]),
